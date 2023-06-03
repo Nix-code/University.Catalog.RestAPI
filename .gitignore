@@ -1,0 +1,9 @@
+*/bin/
+*/obj/
+.vscode/
+coverage*.xml
+.vs/
+*.orig
+coveragereport/
+*.nupkg
+.fake
