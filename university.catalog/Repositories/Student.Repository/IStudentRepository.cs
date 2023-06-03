@@ -12,6 +12,6 @@ namespace University.Catalog.Repositories
         void CreateStudent(StudentEntity student);
         void UpdateStudent(StudentEntity student);
 
-        void DeleteStudent(StudentEntity student);
+        void DeleteStudent(Guid studentId);
     }
 }
