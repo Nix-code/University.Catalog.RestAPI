@@ -114,7 +114,7 @@ namespace University.Catalog.Repositories {
 
             // return student id if found, else return null
             // LINQ query
-            return students.Where(students => students.StudentUniqueId == studentId).SingleOrDefault();
+            return students.Where(student => student.StudentUniqueId == studentId).SingleOrDefault();
 
         }
 
