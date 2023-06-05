@@ -15,14 +15,14 @@ namespace University.Catalog.Controllers {
             this.studentRepository = studentRepository;
         }
         [HttpGet]
-        public IEnumerable<StudentEntityDto> GetAllStudents() {
+        public IEnumerable<StudentEntityDto> GetAllStudent() {
             var studentRecord = studentRepository.GetAllStudents().Select(existingRecord => existingRecord.AsDto());
             return studentRecord;
         }
 
         // GET / students/{id}
         [HttpGet("{StudentUniqueId}")]
-        public ActionResult<StudentEntityDto> GetStudentById(Guid StudentUniqueId){
+        public ActionResult<StudentEntityDto> GetAllStudent(Guid StudentUniqueId){
             var studentRecord = studentRepository.GetStudentById(StudentUniqueId);
             return studentRecord is null ? NotFound() : studentRecord.AsDto();
         }
@@ -49,7 +49,7 @@ namespace University.Catalog.Controllers {
 
 
             };
-            return CreatedAtAction(nameof(GetStudentById), new {studentUniqueId = student.StudentUniqueId}, student.AsDto());
+            return CreatedAtAction(nameof(GetAllStudent), new {studentUniqueId = student.StudentUniqueId}, student.AsDto());
 
         }
 
@@ -61,8 +61,8 @@ namespace University.Catalog.Controllers {
             if (existingRecord is null){
                 return NotFound();
             }
-            StudentEntity updatedstudent = existingRecord with{
-                StudentUniqueId = Guid.NewGuid(),
+            StudentEntity UpdatedStudent = existingRecord with{
+        
                 StudentName = studentDto.StudentName,
                 StudentAddress = studentDto.StudentAddress,
                 StudentAge = studentDto.StudentAge,
@@ -81,7 +81,7 @@ namespace University.Catalog.Controllers {
 
 
             };
-            studentRepository.UpdateStudent(updatedstudent);
+            studentRepository.UpdateStudent(UpdatedStudent);
             return NoContent();
 
     }
