@@ -3,7 +3,7 @@ using System;
 namespace University.Catalog.ModelsDtos{
     
     public record StudentEntityDto {
-        public Guid StudentUniqueId { get; init; }
+        public string? StudentUniqueId { get; init; }
         public string? StudentName { get; init; }
         public string? StudentAddress { get; init; }
         public int StudentAge { get; init; }

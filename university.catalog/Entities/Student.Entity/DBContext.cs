@@ -1,32 +1,36 @@
 using Microsoft.EntityFrameworkCore;
+using System;
 
-namespace University.Catalog.Entities {
-
-    public partial class DBContext: DbContext {
-
-        public DBContext() {
-
+namespace University.Catalog.Entities
+{
+    public partial class DBContext : DbContext
+    {
+        public DBContext()
+        {
         }
 
-        public DBContext(DbContextOptions<DBContext> options) : base(options){
-
+        public DBContext(DbContextOptions<DBContext> options) : base(options)
+        {
         }
-        
-        
-        public virtual DbSet<StudentEntity> students {get; set;}
 
-        // Creating 'OnModelCreating' method to define the mapping between 
-        // 'StudentEntity' class and the 'studentTable' in the database.
+        public virtual DbSet<StudentEntity> Students { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseMySQL("Server=127.0.0.1;User ID=devadmin;Password=n33x123;Port=3306;Database=universityDB");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<StudentEntity> (entity => {
-                entity.ToTable("studentTable"); // specify the table name
-                entity.HasKey(e => e.StudentUniqueId); // primary key
+            modelBuilder.Entity<StudentEntity>(entity =>
+            {
+                entity.ToTable("studentTable");
+                entity.HasKey(e => e.StudentUniqueId);
 
-                // define the column mappings
-
-                entity.Property(e => e.StudentUniqueId).HasColumnName("StudentUniqueId");
+                 entity.Property(e => e.StudentUniqueId).HasColumnName("StudentUniqueId");
                 entity.Property(e => e.StudentName).HasColumnName("StudentName");
                 entity.Property(e => e.StudentAddress).HasColumnName("StudentAddress");
                 entity.Property(e => e.StudentAge).HasColumnName("StudentAge");
@@ -42,11 +46,31 @@ namespace University.Catalog.Entities {
                 entity.Property(e => e.BloodGroup).HasColumnName("BloodGroup");
                 entity.Property(e => e.IsDayScholar).HasColumnName("IsDayScholar");
                 entity.Property(e => e.DurationForCourse).HasColumnName("DurationForCourse");
-                
+
+                // Optionally, seed some initial data
+                entity.HasData(new StudentEntity
+                {
+                    StudentUniqueId = "gfgjdkflgjlkd223",
+                    StudentName = "John Doe",
+                    // Set other properties...
+                    StudentAddress = "123 Main St",
+                    StudentAge = 20,
+                    StudentEmailAddress = "john.doe@example.com",
+                    StudentEnrollmentDate = DateTimeOffset.UtcNow,
+                    CountryName = "United States",
+                    StudentGender = "Male",
+                    StudentContactNumber = 1234567890,
+                    IsScholar = false,
+                    CoreBranchName = "Computer Science",
+                    EmergencyContactName = "Jane Doe",
+                    EmergencyContactNumber = 9876543210,
+                    BloodGroup = "O+",
+                    IsDayScholar = true,
+                    DurationForCourse = 4
+                });
             });
 
             base.OnModelCreating(modelBuilder);
         }
-
     }
 }
