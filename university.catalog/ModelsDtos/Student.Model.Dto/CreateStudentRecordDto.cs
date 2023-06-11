@@ -3,6 +3,7 @@ namespace University.Catalog.ModelsDtos{
 
     public record CreateStudentRecordDto {
         [Required]
+        public string? StudentUniqueId{get; init;}
         public string? StudentName { get; init; }
         [Required]
         public string? StudentAddress { get; init; }

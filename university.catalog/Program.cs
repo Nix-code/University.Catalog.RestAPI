@@ -1,13 +1,22 @@
 
-using University.Catalog.Repositories;
+using Microsoft.EntityFrameworkCore;
+using MySql.EntityFrameworkCore.Extensions;
+using University.Catalog.Persistence.Repositories;
+using University.Catalog.Persistence;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddSingleton<IStudentRepository, InMemStudentRepository>();
+
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddScoped<DbContext, DBContext>();
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+
 builder.Services.AddSwaggerGen();
+builder.Services.AddEntityFrameworkMySQL().AddDbContext<DBContext>(options => {
+    options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
 var app = builder.Build();
 
