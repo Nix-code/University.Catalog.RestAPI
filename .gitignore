@@ -8,4 +8,4 @@ coveragereport/
 *.nupkg
 .fake
 */appsettings.Development.json
-*assets
+*assets/GET.png
