@@ -47,7 +47,12 @@ The University API provides the following endpoints for accessing student's deta
 
 - DELETE /api/students/{id}: Delete a student
 
-Similar endpoints are available for teachers, grades, and courses.
+Similar endpoints are available for teachers, grades, and courses
+
+## Demo
+
+![GET request Demo](assets/GET.png)
+
 
 ## Contributing
 Contributions are welcome! If you have any suggestions, bug reports, or feature requests, please open an issue or submit a pull request.
