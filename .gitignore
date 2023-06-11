@@ -7,4 +7,5 @@ coverage*.xml
 coveragereport/
 *.nupkg
 .fake
+*/appsettings.Development.json
 *assets
