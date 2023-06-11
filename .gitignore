@@ -7,4 +7,4 @@ coverage*.xml
 coveragereport/
 *.nupkg
 .fake
-appsetting.Development.json/
+appsettings.Development.json/
