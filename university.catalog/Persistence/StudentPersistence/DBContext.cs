@@ -1,17 +1,18 @@
 using Microsoft.EntityFrameworkCore;
 using System;
+using University.Catalog.Persistence.Repositories;
+using University.Catalog.Entities;
+using Microsoft.Extensions.Configuration;
+using System.IO;
+namespace University.Catalog.Persistence
 
-namespace University.Catalog.Entities
 {
     public partial class DBContext : DbContext
     {
-        public DBContext()
+       public DBContext(DbContextOptions<DBContext> options) : base(options)
         {
         }
 
-        public DBContext(DbContextOptions<DBContext> options) : base(options)
-        {
-        }
 
         public virtual DbSet<StudentEntity> Students { get; set; }
 
@@ -19,7 +20,12 @@ namespace University.Catalog.Entities
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySQL("Server=127.0.0.1;User ID=devadmin;Password=n33x123;Port=3306;Database=universityDB");
+                IConfigurationRoot configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.Development.json")
+                .Build();
+               string connectionString = configuration.GetConnectionString("UniversityDB");
+               optionsBuilder.UseMySQL(connectionString);
             }
         }
 
