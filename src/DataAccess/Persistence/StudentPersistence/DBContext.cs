@@ -16,13 +16,20 @@ namespace University.Catalog.Persistence
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-            {
-                IConfigurationRoot configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.Development.json")
-                .Build();
-               string connectionString = configuration.GetConnectionString("UniversityDB");
-               optionsBuilder.UseMySQL(connectionString);
+            {   
+                try{
+
+                    IConfigurationRoot configuration = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.Development.json")
+                    .Build();
+                string connectionString = configuration.GetConnectionString("UniversityDB");
+                optionsBuilder.UseMySQL(connectionString);
+                }
+
+                catch(Exception ex){
+                   throw new Exception("An error occurred while configuring the database.", ex);
+                }
             }
         }
 
@@ -33,7 +40,7 @@ namespace University.Catalog.Persistence
                 entity.ToTable("studentTable");
                 entity.HasKey(e => e.StudentUniqueId);
 
-                 entity.Property(e => e.StudentUniqueId).HasColumnName("StudentUniqueId");
+                entity.Property(e => e.StudentUniqueId).HasColumnName("StudentUniqueId");
                 entity.Property(e => e.StudentName).HasColumnName("StudentName");
                 entity.Property(e => e.StudentAddress).HasColumnName("StudentAddress");
                 entity.Property(e => e.StudentAge).HasColumnName("StudentAge");

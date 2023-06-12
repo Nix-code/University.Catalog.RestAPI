@@ -17,22 +17,39 @@ namespace University.Catalog.Presentation.Controllers.Student.Controller
         }
 
         [HttpGet]
-        public async Task<IEnumerable<StudentEntityDto>> GetAllStudents() {
+        public async Task<ActionResult<IEnumerable<StudentEntityDto>>> GetAllStudents() {
+
+            try {
             
             var studentRecord = await studentRepository.GetAllStudentsAsync();
-            return studentRecord.Select(existingRecord => existingRecord.AsDto());
+            return Ok(studentRecord.Select(existingRecord => existingRecord.AsDto()));
+
+            } 
+
+            catch(Exception ex) {
+                return Problem(ex.Message, statusCode: 500);
+                
+            }
         }
 
         [HttpGet("{StudentUniqueId}")]
         public async Task<ActionResult<StudentEntityDto>> GetStudentById(string StudentUniqueId)
         {
+            try {
             var studentRecord = await studentRepository.GetStudentByIdAsync(StudentUniqueId);
-            return studentRecord is null ? NotFound() : studentRecord.AsDto();
+            return Ok(studentRecord is null ? NotFound() : studentRecord.AsDto());
+
+            }
+
+            catch(Exception ex) {
+                return Problem(ex.Message, statusCode: 500);
+            }
         }
 
         [HttpPost]
         public async Task<ActionResult<StudentEntityDto>> CreateStudent(CreateStudentRecordDto studentDto)
-        {
+        {   
+            try {
             var student = studentDto.AsEntity();
 
             await studentRepository.CreateStudentAsync(student);
@@ -40,6 +57,13 @@ namespace University.Catalog.Presentation.Controllers.Student.Controller
             var studentDtoResult = student.AsDto();
 
             return CreatedAtAction(nameof(GetStudentById), new { StudentUniqueId = student.StudentUniqueId }, studentDtoResult);
+
+            }
+
+            catch(Exception ex) {
+
+                return Problem(ex.Message, statusCode: 500);
+            }
         }
 
         
