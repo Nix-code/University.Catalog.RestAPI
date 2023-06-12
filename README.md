@@ -94,7 +94,7 @@ Similar endpoints are available for teachers, grades, and courses
 
 
 ## Contributing
-Contributions are welcome! If you have any suggestions, bug reports, or feature requests, please open an issue or submit a pull request.
+Contributions are welcome! If you have any suggestions, bug reports, unit tests or feature requests, please open an issue or submit a pull request.
 
 ## License
 This project is licensed under the **MIT License**.
