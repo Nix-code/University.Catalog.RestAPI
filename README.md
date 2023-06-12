@@ -90,7 +90,7 @@ Similar endpoints are available for teachers, grades, and courses
 ```
 ## Demo
 
-![GET request Demo](demo/GET.png)
+<img src = "demo/GET.png">
 
 
 ## Contributing
