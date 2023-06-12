@@ -90,7 +90,7 @@ Similar endpoints are available for teachers, grades, and courses
 ```
 ## Demo
 
-![GET request Demo](assets/GET.png)
+![GET request Demo](demo/GET.png)
 
 
 ## Contributing
