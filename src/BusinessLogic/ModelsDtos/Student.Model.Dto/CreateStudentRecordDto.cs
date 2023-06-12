@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-namespace University.Catalog.ModelsDtos{
+namespace University.Catalog.BusinessLogic.ModelsDtos{
 
     public record CreateStudentRecordDto {
         [Required]

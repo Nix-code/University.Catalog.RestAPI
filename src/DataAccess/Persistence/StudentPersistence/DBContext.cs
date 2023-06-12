@@ -1,9 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using System;
-using University.Catalog.Persistence.Repositories;
-using University.Catalog.Entities;
+using University.Catalog.DataAccess.Entities;
 using Microsoft.Extensions.Configuration;
-using System.IO;
 namespace University.Catalog.Persistence
 
 {

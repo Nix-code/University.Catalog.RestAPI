@@ -1,5 +1,5 @@
-using University.Catalog.Entities;
-using University.Catalog.ModelsDtos;
+using University.Catalog.DataAccess.Entities;
+using University.Catalog.BusinessLogic.ModelsDtos;
 
 namespace University.Catalog.Helper {
     public static class StudentHelper {

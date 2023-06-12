@@ -1,8 +1,5 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using University.Catalog.Entities;
-using University.Catalog.Persistence;
+using University.Catalog.DataAccess.Entities;
 namespace University.Catalog.Persistence.Repositories {
     public class StudentRepository: IStudentRepository {
 

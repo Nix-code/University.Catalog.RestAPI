@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using University.Catalog.Entities;
+using University.Catalog.DataAccess.Entities;
 
 namespace University.Catalog.Persistence.Repositories {
 

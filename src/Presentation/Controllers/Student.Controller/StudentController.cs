@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+
 using Microsoft.AspNetCore.Mvc;
-using University.Catalog.Entities;
-using University.Catalog.ModelsDtos;
+using University.Catalog.BusinessLogic.ModelsDtos;
 using University.Catalog.Helper;
-using University.Catalog.Persistence;
 using University.Catalog.Persistence.Repositories;
-namespace University.Catalog.Controllers
+namespace University.Catalog.Presentation.Controllers.Student.Controller
 {
     [ApiController]
     [Route("api/students")]

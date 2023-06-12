@@ -1,6 +1,6 @@
 using System;
 
-namespace University.Catalog.ModelsDtos{
+namespace University.Catalog.BusinessLogic.ModelsDtos{
     
     public record StudentEntityDto {
         public string? StudentUniqueId { get; init; }

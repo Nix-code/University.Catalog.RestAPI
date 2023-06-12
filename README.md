@@ -24,7 +24,7 @@ To get started with the University API, follow these steps:
     ```shell
     dotnet restore
 
-3. Configure the database connection in appsettings.json (if applicable).
+3. Configure the database connection in appsettings.json or appsettings.Development.json
 
 4. Run the API:
 
@@ -49,6 +49,45 @@ The University API provides the following endpoints for accessing student's deta
 
 Similar endpoints are available for teachers, grades, and courses
 
+## Directory Tree
+```
+└── University
+    ├── BusinessLogic
+    │   └── ModelsDtos
+    │       └── Student.Model.Dto
+    │           ├── CreateStudentRecordDto.cs
+    │           ├── StudentEntityDto.cs
+    │           └── UpdateStudentRecordDto.cs
+    ├── DataAccess
+    │   ├── Entities
+    │   │   ├── Course.Entity
+    │   │   │   └── CourseEntity.cs
+    │   │   ├── Grade.Entity
+    │   │   │   └── GradeEntity.cs
+    │   │   ├── Student.Entity
+    │   │   │   └── StudentEntity.cs
+    │   │   └── Teacher.Entity
+    │   │       └── TeacherEntity.cs
+    │   └── Persistence
+    │       └── StudentPersistence
+    │           ├── DbContext.cs
+    │           └── Repositories
+    │               ├── IStudentRepository.cs
+    │               └── StudentRepository.cs
+    ├── Helper
+    │   └── StudentHelper.cs
+    └── Presentation
+        └── Controllers
+            ├── Course.Controller
+            │   └── CourseController.cs
+            ├── Grade.Controller
+            │   └── GradeController.cs
+            ├── Student.Controller
+            │   └── StudentController.cs
+            └── Teacher.Controller
+                └── TeacherController.cs
+
+```
 ## Demo
 
 ![GET request Demo](assets/GET.png)
