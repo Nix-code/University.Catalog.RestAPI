@@ -8,7 +8,9 @@ This is a RESTful API for managing student, teacher, grade, and course data for 
 - ASP.NET Core Web API
 - Entity Framework Core
 - MYSQL Server
+- JWT or Oauth authorization 
 - React (optional, if you're building a React frontend)
+
 
 ## Getting Started
 
