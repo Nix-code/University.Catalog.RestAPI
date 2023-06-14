@@ -3,35 +3,35 @@ namespace University.Catalog.BusinessLogic.ModelsDtos{
 
     public record UpdateStudentRecordDto {
         [Required]
-        public string? StudentName { get; init; }
+        public string? StudentName { get; set; }
         [Required]
-        public string? StudentAddress { get; init; }
+        public string? StudentAddress { get; set; }
         [Required]
         // can be changed as per the requirement
         [Range(16,40)]
-        public int StudentAge { get; init; }
+        public int StudentAge { get; set; }
         [Required]
-        public string? StudentEmailAddress { get; init; }
-        public DateTimeOffset StudentEnrollmentDate { get; init; }
+        public string? StudentEmailAddress { get; set; }
+        public DateTimeOffset StudentEnrollmentDate { get; set; }
         [Required]
-        public string? CountryName { get; init; }
+        public string? CountryName { get; set; }
         [Required]
-        public string? StudentGender { get; init; }
+        public string? StudentGender { get; set; }
         [Required]
-        public long StudentContactNumber { get; init; }
+        public long StudentContactNumber { get; set; }
         [Required]
-        public bool IsScholar { get; init; }
+        public bool IsScholar { get; set; }
         [Required]
-        public string? CoreBranchName { get; init; }
+        public string? CoreBranchName { get; set; }
         [Required]
-        public string? EmergencyContactName { get; init; }
+        public string? EmergencyContactName { get; set; }
         [Required]
-        public long EmergencyContactNumber { get; init; }
+        public long EmergencyContactNumber { get; set; }
 
-        public string? BloodGroup { get; init; }
+        public string? BloodGroup { get; set; }
         [Required]
-        public bool IsDayScholar { get; init; }
+        public bool IsDayScholar { get; set; }
         [Required]
-        public int DurationForCourse { get; init; }
+        public int DurationForCourse { get; set; }
     }
 }

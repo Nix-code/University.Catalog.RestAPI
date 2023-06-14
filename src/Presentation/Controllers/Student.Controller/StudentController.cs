@@ -17,55 +17,87 @@ namespace University.Catalog.Presentation.Controllers.Student.Controller
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<StudentEntityDto>>> GetAllStudents() {
+        public async Task<ActionResult<IEnumerable<StudentEntityDto>>> GetAllStudents()
+        {
 
-            try {
-            
-            var studentRecord = await studentRepository.GetAllStudentsAsync();
-            return Ok(studentRecord.Select(existingRecord => existingRecord.AsDto()));
+            try
+            {
 
-            } 
+                var studentRecord = await studentRepository.GetAllStudentsAsync();
+                return Ok(studentRecord.Select(existingRecord => existingRecord.AsDto()));
 
-            catch(Exception ex) {
+            }
+
+            catch (Exception ex)
+            {
                 return Problem(ex.Message, statusCode: 500);
-                
+
             }
         }
 
         [HttpGet("{StudentUniqueId}")]
         public async Task<ActionResult<StudentEntityDto>> GetStudentById(string StudentUniqueId)
         {
-            try {
-            var studentRecord = await studentRepository.GetStudentByIdAsync(StudentUniqueId);
-            return Ok(studentRecord is null ? NotFound() : studentRecord.AsDto());
+            try
+            {
+                var studentRecord = await studentRepository.GetStudentByIdAsync(StudentUniqueId);
+                return Ok(studentRecord is null ? NotFound() : studentRecord.AsDto());
 
             }
 
-            catch(Exception ex) {
+            catch (Exception ex)
+            {
                 return Problem(ex.Message, statusCode: 500);
             }
         }
 
         [HttpPost]
         public async Task<ActionResult<StudentEntityDto>> CreateStudent(CreateStudentRecordDto studentDto)
-        {   
-            try {
-            var student = studentDto.AsEntity();
+        {
+            try
+            {
+                var student = studentDto.AsCreateEntity();
 
-            await studentRepository.CreateStudentAsync(student);
+                await studentRepository.CreateStudentAsync(student);
 
-            var studentDtoResult = student.AsDto();
+                var studentDtoResult = student.AsDto();
 
-            return CreatedAtAction(nameof(GetStudentById), new { StudentUniqueId = student.StudentUniqueId }, studentDtoResult);
+                return CreatedAtAction(nameof(GetStudentById), new { StudentUniqueId = student.StudentUniqueId }, studentDtoResult);
 
             }
 
-            catch(Exception ex) {
+            catch (Exception ex)
+            {
 
                 return Problem(ex.Message, statusCode: 500);
             }
         }
 
-        
+        [HttpPut("{StudentUniqueId}")]
+        public async Task<ActionResult<StudentEntityDto>> UpdateStudent(string StudentUniqueId, UpdateStudentRecordDto studentDto)
+        {
+            try
+            {
+                var existingStudent = await studentRepository.GetStudentByIdAsync(StudentUniqueId);
+
+                if (existingStudent == null)
+                {
+                    return NotFound();
+                }
+
+                var updatedStudent = studentDto.AsUpdateEntity(StudentUniqueId);
+                await studentRepository.UpdateStudentAsync(updatedStudent);
+
+                var updatedStudentDto = updatedStudent.AsDto();
+                return Ok(updatedStudentDto);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message, statusCode: 500);
+            }
+        }
+
+
+
     }
 }

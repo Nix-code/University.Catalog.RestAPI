@@ -26,10 +26,32 @@ namespace University.Catalog.Helper {
             };
         }
 
-        public static StudentEntity AsEntity (this CreateStudentRecordDto studentDto){
+        public static StudentEntity AsCreateEntity (this CreateStudentRecordDto studentDto){
 
             return new StudentEntity {
                 StudentUniqueId = studentDto.StudentUniqueId,
+                StudentName = studentDto.StudentName,
+                StudentAddress = studentDto.StudentAddress,
+                StudentAge = studentDto.StudentAge,
+                StudentEmailAddress = studentDto.StudentEmailAddress,
+                StudentEnrollmentDate = studentDto.StudentEnrollmentDate,
+                CountryName = studentDto.CountryName,
+                StudentGender = studentDto.StudentGender,
+                StudentContactNumber = studentDto.StudentContactNumber,
+                IsScholar = studentDto.IsScholar,
+                CoreBranchName = studentDto.CoreBranchName,
+                EmergencyContactName = studentDto.EmergencyContactName,
+                EmergencyContactNumber = studentDto.EmergencyContactNumber,
+                BloodGroup = studentDto.BloodGroup,
+                IsDayScholar = studentDto.IsDayScholar,
+                DurationForCourse = studentDto.DurationForCourse
+            };
+        }
+
+         public static StudentEntity AsUpdateEntity (this UpdateStudentRecordDto studentDto, string studentUniqueId){
+
+            return new StudentEntity {
+                StudentUniqueId = studentUniqueId,
                 StudentName = studentDto.StudentName,
                 StudentAddress = studentDto.StudentAddress,
                 StudentAge = studentDto.StudentAge,
