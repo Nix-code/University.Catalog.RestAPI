@@ -82,7 +82,7 @@ namespace University.Catalog.Presentation.Controllers.Student.Controller
 
                 if (existingStudent == null)
                 {
-                    return NotFound();
+                    return NotFound($"Student with Id = {StudentUniqueId} not found");
                 }
 
                 var updatedStudent = studentDto.AsUpdateEntity(StudentUniqueId);
@@ -97,6 +97,29 @@ namespace University.Catalog.Presentation.Controllers.Student.Controller
             }
         }
 
+        [HttpDelete("{StudentUniqueId}")]
+
+        public async Task<ActionResult<StudentEntityDto>> DeleteStudent(string studentUniqueId){
+
+            try {
+
+                var existingStudent = await studentRepository.GetStudentByIdAsync(studentUniqueId);
+
+                if(existingStudent == null){
+                    return NotFound($"Student with Id = {studentUniqueId} not found");
+                }
+
+                await studentRepository.DeleteStudentAsync(existingStudent);
+
+                return Ok($"Student record with StudentUniqueId = {studentUniqueId} deleted successfully");
+                
+
+            }
+
+            catch(Exception ex){
+                return Problem(ex.Message, statusCode: 500);
+            }
+        }
 
 
     }

@@ -30,19 +30,19 @@ namespace University.Catalog.Persistence.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        
+
 
         public async Task UpdateStudentAsync(StudentEntity student)
         {
             try
             {
-                
+
                 // var existingStudent = await _dbContext.Students.FindAsync(student.StudentUniqueId);
                 var existingStudent = await _dbContext.Students
                 .FirstOrDefaultAsync(e => e.StudentUniqueId == student.StudentUniqueId);
                 if (existingStudent == null)
                 {
-                    throw new Exception("Student not found");
+                    throw new Exception("Record not found");
                 }
 
                 // Update the existing student with the new values
@@ -69,6 +69,27 @@ namespace University.Catalog.Persistence.Repositories
             {
                 // Handle any exceptions that occur during the update process
                 throw new Exception("Failed to update student", ex);
+            }
+        }
+
+        public async Task DeleteStudentAsync(StudentEntity student)
+        {
+            try
+            {
+                var existingStudent = await _dbContext.Students
+                .FirstOrDefaultAsync(e => e.StudentUniqueId == student.StudentUniqueId);
+
+                if (existingStudent == null)
+                {
+                    throw new Exception("Record not found !");
+                }
+
+                _dbContext.Students.Remove(existingStudent);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to delete student", ex);
             }
         }
 

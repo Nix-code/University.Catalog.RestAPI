@@ -11,6 +11,7 @@ namespace University.Catalog.Persistence.Repositories {
         Task<List<StudentEntity>> GetAllStudentsAsync();
         Task CreateStudentAsync(StudentEntity student);
         Task UpdateStudentAsync(StudentEntity student);
+        Task DeleteStudentAsync(StudentEntity student);
      
     }
 }
